@@ -13,7 +13,7 @@
   %body
     #page
       %header
-        %h1 pivot pong #{location.downcase}
+        %h1 hammerpong #{location.downcase}
         %nav
           = link_to_with_current "Rankings", root_path
           = link_to_with_current "Matches", matches_path
@@ -21,4 +21,4 @@
       = render 'shared/flash_messages'
       = yield
       %footer
-        = link_to "source code", "https://github.com/seanmoon/pivot-pong"
+        = link_to "source code", "https://github.com/quainjn/pivot-pong"
