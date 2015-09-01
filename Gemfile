@@ -3,8 +3,11 @@ source 'http://rubygems.org'
 gem 'rails', '~> 3.0'
 gem 'rake'
 gem 'haml-rails'
-gem 'heroku'
 gem 'jquery-rails'
+
+group 'production' do
+  gem 'rails_12factor'
+end
 
 group :test, :development do
   gem 'sqlite3'
