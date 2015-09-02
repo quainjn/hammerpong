@@ -1,0 +1,19 @@
+- content_for :title, "Players"
+
+= form_for(@player) do |f|
+  = f.label :name
+  = f.text_field :name
+  = submit_tag "Add Player"
+
+%h2 Existing Players
+
+%table
+  %tr
+    %th Rank
+    %th Name
+    %th Active
+  - @players.each do |player|
+    %tr{class: cycle("even", "odd")}
+      %td= player.rank
+      %td= player.display_name
+      %td= player.active
