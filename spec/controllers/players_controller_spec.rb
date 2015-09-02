@@ -20,9 +20,9 @@ describe PlayersController do
         post :create, player: {name: "Name"}
       }.to change(Player, :count).by(1)
       player = Player.last
-      expect(player.name).to eq "Name"
+      expect(player.name).to eq "name"
       expect(player.rank).to be_nil
-      expect(player).to be_inactive
+      expect(player).to be_active
     end
   end
 end

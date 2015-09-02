@@ -11,6 +11,11 @@ describe Match do
   describe "validations" do
     subject { Match.create }
     it { should_not be_valid }
+    it "doesn't let the winner and loser be the same" do
+      player = Player.create(name: "n")
+      match = Match.create(winner: player, loser: player, occured_at: DateTime.now)
+      expect(match).to be_invalid
+    end
   end
 
   describe "updating player ranks" do
