@@ -16,7 +16,6 @@
     %th.date Date
     %th Winner
     %th Loser
-    %th.action
   - @matches.each do |m|
     %tr{class: cycle("even", "odd")}
       %td.date= m.occured_at.strftime("%Y-%m-%d")
