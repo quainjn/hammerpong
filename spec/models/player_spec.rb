@@ -6,23 +6,9 @@ describe Player do
     its(:name) { should == "gregg van hove" }
   end
 
-  it "should validate unique names" do
-    Player.create(name: 'p1')
-    p = Player.new(name: 'p1')
-    p.should_not be_valid
-    p.error_on(:name).should be_present
-  end
-
-  it "should validate unique ranks" do
-    Player.create(name: 'p1', rank: 3)
-    p = Player.new(name: 'p2', rank: 3)
-    p.should_not be_valid
-    p.error_on(:rank).should be_present
-  end
-
-  it "requires a name" do
-    Player.new.should_not be_valid
-  end
+  it { is_expected.to validate_presence_of :name }
+  it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
+  it { is_expected.to validate_uniqueness_of :rank }
 
   it "clears ranks when players become inactive" do
     p1 = Player.create(name: "foo", rank: 3, active: true)

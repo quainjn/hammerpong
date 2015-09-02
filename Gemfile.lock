@@ -102,6 +102,8 @@ GEM
       rspec-core (~> 2.99.0)
       rspec-expectations (~> 2.99.0)
       rspec-mocks (~> 2.99.0)
+    shoulda-matchers (2.8.0)
+      activesupport (>= 3.0.0)
     sprockets (2.2.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -129,6 +131,7 @@ DEPENDENCIES
   rake
   rspec-its
   rspec-rails (~> 2.4)
+  shoulda-matchers
   sqlite3
   test-unit
 

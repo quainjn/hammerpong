@@ -5,8 +5,7 @@ class Player < ActiveRecord::Base
   before_validation :downcase_name
   before_save :clear_ranks_for_inactive_players
 
-  validates :name, presence: true
-  validates_uniqueness_of :name
+  validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates_uniqueness_of :rank, :allow_nil => true
 
   scope :ranked, where('rank IS NOT NULL').order('rank asc')
