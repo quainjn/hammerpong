@@ -5,17 +5,16 @@ class MatchesController < ApplicationController
 
   def create
     params[:match] ||= {}
-    params[:match][:winner] = Player.find_by_name(params[:winner_name].downcase)
-    params[:match][:loser] = Player.find_by_name(params[:loser_name].downcase)
+    params[:match][:winner] = Player.find_or_create_by_name(params[:winner_name].downcase)
+    params[:match][:loser] = Player.find_or_create_by_name(params[:loser_name].downcase)
 
-    @match = Match.new(params[:match])
-    if @match.save
-      redirect_to matches_path, notice: "Match saved!"
+    if params[:match][:winner].valid? &&params[:match][:loser].valid?
+      match = Match.new(params[:match])
+      match.save
     else
-      flash.now[:alert] = @match.errors.full_messages.join(", ")
-      @matches = Match.order("occured_at desc")
-      render :index
+      flash.alert = "Must specify a winner and a loser to post a match."
     end
+    redirect_to matches_path
   end
 
   def destroy

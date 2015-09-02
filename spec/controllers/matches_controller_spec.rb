@@ -20,11 +20,11 @@ describe MatchesController do
 
     describe "redirection" do
       before { post :create, match_params }
-      it { should render_template :index }
+      it { should redirect_to(matches_path) }
     end
 
     it "creates a match" do
-      expect { post :create, match_params }.to_not change(Match, :count)
+      expect { post :create, match_params }.to change(Match, :count).by(1)
     end
 
     it "finds players that already exist, case insensitively" do
