@@ -98,11 +98,11 @@ describe Match do
     end
 
     context "when other players have ranks, but not the loser does not" do
-      it "should not update ranks for the players in this match" do
+      it "should update ranks for the players in this match" do
         Match.create(winner: p4, loser: p5)
 
         p4.reload.rank.should == 4
-        p5.reload.rank.should be_nil
+        p5.reload.rank.should == 5
       end
     end
   end
@@ -158,9 +158,9 @@ describe Match do
       p1.reload.should be_active
     end
 
-    it "should not reactivate inactive players when the lose a match" do
+    it "should reactivate inactive players when the lose a match" do
       Match.create(winner: p2, loser: p1)
-      p1.reload.should be_inactive
+      p1.reload.should be_active
     end
   end
 end

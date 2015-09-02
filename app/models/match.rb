@@ -17,16 +17,21 @@ class Match < ActiveRecord::Base
     self.occured_at ||= Time.now
   end
 
+  def max_rank
+    Player.maximum(:rank) + 1
+  end
+
   def update_player_ranks
     if Player.sum(:rank) == 0
       winner.update_attributes :rank => 1, :active => true
       loser.update_attributes :rank => 2, :active => true
       return
     elsif loser.rank.nil?
+      loser.update_attributes :rank => max_rank, :active => true
       return
     end
-    
-    winner_rank = winner.rank || Player.maximum(:rank) + 1
+
+    winner_rank = winner.rank || max_rank
     if winner_rank > loser.rank
       new_rank = (winner_rank + loser.rank) / 2
       winner.update_attributes :rank => nil
