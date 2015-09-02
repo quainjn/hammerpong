@@ -1,5 +1,5 @@
 Pong::Application.routes.draw do
-  resources :matches do
+  resources :matches, except: [:destroy] do
     collection do
       get 'rankings'
       get 'players'
