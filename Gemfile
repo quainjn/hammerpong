@@ -4,6 +4,7 @@ gem 'rails', '~> 3.0'
 gem 'rake'
 gem 'haml-rails'
 gem 'jquery-rails'
+gem 'pg'
 
 group 'production' do
   gem 'rails_12factor'
@@ -15,6 +16,6 @@ group :test, :development do
   gem 'test-unit'
 end
 
-group :production do
-  gem 'pg'
+group :test do
+  gem 'rspec-its'
 end
